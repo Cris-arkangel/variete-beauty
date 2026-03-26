@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varieté Beauty | Cosmiátría Profesional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --negro: #0a0a0a;
+            --negro-suave: #1a1a1a;
+            --negro-card: #111111;
+            --nude: #c4a882;
+            --nude-claro: #d4bfa0;
+            --nude-oscuro: #a8926e;
+            --dorado: #d4af37;
+            --dorado-claro: #e8c84a;
+            --blanco: #f5f0eb;
+            --blanco-puro: #ffffff;
+            --gris-texto: #b0a89e;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--negro);
+            color: var(--blanco);
+            line-height: 1.6;
+        }
+
+        /* ============ NAVBAR ============ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(196, 168, 130, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--nude);
+        }
+
+        .nav-logo span {
+            color: var(--dorado);
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--gris-texto);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--dorado);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--nude-claro);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 1.5px;
+            background: var(--nude);
+            transition: 0.3s;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(
+                135deg,
+                var(--negro) 0%,
+                #1a1510 50%,
+                var(--negro) 100%
+            );
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(212, 175, 55, 0.03) 0%,
+                transparent 60%
+            );
+            animation: shimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(2%, 1%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 30px;
+        }
+
+        .hero-logo {
+            width: 180px;
+            height: auto;
+            margin: 0 auto 25px;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.15));
+        }
+
+        .hero-line {
+            width: 60px;
+            height: 1px;
+            background: var(--dorado);
+            margin: 0 auto 30px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--dorado);
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--blanco);
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--nude);
+            font-weight: 300;
+        }
+
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--nude-claro);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 15px 50px;
+            border: 1px solid var(--dorado);
+            color: var(--dorado);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .hero-cta:hover {
+            background: var(--dorado);
+            color: var(--negro);
+        }
+
+        /* ============ SECCIONES GENERAL ============ */
+        section {
+            padding: 100px 30px;
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--dorado);
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--blanco);
+            letter-spacing: 3px;
+        }
+
+        .section-divider {
+            width: 40px;
+            height: 1px;
+            background: var(--dorado);
+            margin: 20px auto 0;
+        }
+
+        /* ============ SERVICIOS ============ */
+        .servicios {
+            background: var(--negro-suave);
+        }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .servicio-card {
+            background: var(--negro-card);
+            border: 1px solid rgba(196, 168, 130, 0.1);
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .servicio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .servicio-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .servicio-card:hover::before {
+            opacity: 1;
+        }
+
+        .servicio-icon {
+            font-size: 28px;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .servicio-nombre {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px;
+            font-weight: 400;
+            color: var(--nude-claro);
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        .servicio-desc {
+            font-size: 12px;
+            color: var(--gris-texto);
+            margin-top: 10px;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        /* ============ SOBRE NOSOTROS ============ */
+        .sobre {
+            background: var(--negro);
+        }
+
+        .sobre-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .sobre-text p {
+            font-size: 15px;
+            color: var(--gris-texto);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .sobre-text p:first-child::first-letter {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            float: left;
+            color: var(--dorado);
+            line-height: 1;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .sobre-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 30px 15px;
+            border: 1px solid rgba(196, 168, 130, 0.15);
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--dorado);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gris-texto);
+            margin-top: 8px;
+        }
+
+        /* ============ BENEFICIOS / POR QUÉ ============ */
+        .beneficios {
+            background: var(--negro-suave);
+        }
+
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        .beneficio {
+            text-align: center;
+        }
+
+        .beneficio-icon {
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--dorado);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 22px;
+        }
+
+        .beneficio-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            color: var(--nude-claro);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .beneficio-texto {
+            font-size: 13px;
+            color: var(--gris-texto);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ============ CONTACTO ============ */
+        .contacto {
+            background: var(--negro);
+        }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contacto-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--nude-claro);
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        .contacto-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contacto-item-icon {
+            font-size: 18px;
+            color: var(--dorado);
+            margin-top: 2px;
+        }
+
+        .contacto-item-text {
+            font-size: 14px;
+            color: var(--gris-texto);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .contacto-item-text strong {
+            display: block;
+            color: var(--nude-claro);
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .contacto-mapa {
+            border: 1px solid rgba(196, 168, 130, 0.15);
+            overflow: hidden;
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .contacto-mapa iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(80%) invert(92%) contrast(90%);
+        }
+
+        .contacto-cta {
+            margin-top: 30px;
+        }
+
+        .contacto-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 35px;
+            background: var(--dorado);
+            color: var(--negro);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .contacto-cta a:hover {
+            background: var(--dorado-claro);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--negro-card);
+            border-top: 1px solid rgba(196, 168, 130, 0.1);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--nude);
+            margin-bottom: 10px;
+        }
+
+        .footer-text {
+            font-size: 11px;
+            color: var(--gris-texto);
+            letter-spacing: 2px;
+        }
+
+        /* ============ WHATSAPP FLOAT ============ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 58px;
+            height: 58px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0;
+                gap: 25px;
+                border-bottom: 1px solid rgba(196, 168, 130, 0.15);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 38px;
+                letter-spacing: 4px;
+            }
+
+            .hero-tagline {
+                font-size: 17px;
+            }
+
+            .servicios-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .sobre-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .beneficios-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contacto-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 70px 20px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 30px;
+                letter-spacing: 3px;
+            }
+
+            .hero-subtitle {
+                font-size: 10px;
+                letter-spacing: 4px;
+            }
+
+            .sobre-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">Varieté <span>Beauty</span></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle" onclick="document.getElementById('navLinks').classList.toggle('active')">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <img src="333395275_1346565389246234_6527709411927155905_n.jpg" alt="Varieté Beauty Logo" class="hero-logo">
+            <div class="hero-line"></div>
+            <p class="hero-subtitle">Cosmiátría Profesional</p>
+            <h1 class="hero-title">Varieté <em>Beauty</em></h1>
+            <p class="hero-tagline">Tu piel merece un tratamiento a medida</p>
+            <a href="https://wa.me/5491131799348?text=Hola! Quisiera consultar por un turno" class="hero-cta">Reservá tu turno</a>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="servicios" id="servicios">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-label">Nuestros tratamientos</p>
+                <h2 class="section-title">Servicios</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="servicios-grid">
+                <div class="servicio-card">
+                    <span class="servicio-icon">✦</span>
+                    <h3 class="servicio-nombre">Higiene Facial Simple y Profunda</h3>
+                    <p class="servicio-desc">Limpieza profesional con aparatología de última generación para una piel renovada</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icon">◈</span>
+                    <h3 class="servicio-nombre">Tratamiento de Acné</h3>
+                    <p class="servicio-desc">Protocolo especializado para controlar y reducir el acné de forma efectiva</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icon">❖</span>
+                    <h3 class="servicio-nombre">Tratamiento Antiage</h3>
+                    <p class="servicio-desc">Técnicas avanzadas para prevenir y atenuar los signos del envejecimiento</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icon">✧</span>
+                    <h3 class="servicio-nombre">Tratamiento Despigmentante</h3>
+                    <p class="servicio-desc">Reducción de manchas e hiperpigmentación para un tono uniforme</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icon">◇</span>
+                    <h3 class="servicio-nombre">Tratamiento de Piel Alípida</h3>
+                    <p class="servicio-desc">Nutrición e hidratación profunda para pieles secas y desvitalizadas</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icon">✦</span>
+                    <h3 class="servicio-nombre">Bolsas y Ojeras</h3>
+                    <p class="servicio-desc">Tratamiento específico para descongestionar y revitalizar el contorno de ojos</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icon">◈</span>
+                    <h3 class="servicio-nombre">Tratamiento de Rosácea</h3>
+                    <p class="servicio-desc">Protocolos calmantes para pieles sensibles con enrojecimiento crónico</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icon">❖</span>
+                    <h3 class="servicio-nombre">Tratamiento de Piel Seca</h3>
+                    <p class="servicio-desc">Restauración de la barrera cutánea y recuperación de la hidratación natural</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icon">✧</span>
+                    <h3 class="servicio-nombre">Quistes de Millium</h3>
+                    <p class="servicio-desc">Extracción profesional y segura de microquistes con técnica especializada</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icon">◇</span>
+                    <h3 class="servicio-nombre">Peeling Cosmiátrico</h3>
+                    <p class="servicio-desc">Renovación celular para mejorar textura, luminosidad y tono de la piel</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icon">✦</span>
+                    <h3 class="servicio-nombre">Masaje Craneofacial</h3>
+                    <p class="servicio-desc">Técnica de relajación profunda que alivia tensiones y mejora la circulación facial</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE NOSOTROS -->
+    <section class="sobre" id="nosotros">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-label">Sobre nosotros</p>
+                <h2 class="section-title">Varieté Beauty</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <p>En Varieté Beauty creemos que cada piel cuenta una historia diferente. Por eso, cada tratamiento comienza con un diagnóstico personalizado para entender las necesidades específicas de tu piel y diseñar un protocolo a medida.</p>
+                    <p>Trabajamos con aparatología profesional y productos de alta cosmiátría para garantizar resultados visibles desde la primera sesión. Nuestro compromiso es ofrecerte un espacio de cuidado, confianza y bienestar.</p>
+                </div>
+                <div class="sobre-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">11</div>
+                        <div class="stat-label">Tratamientos</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Personalizado</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">✦</div>
+                        <div class="stat-label">Aparatología</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">♡</div>
+                        <div class="stat-label">Dedicación</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POR QUÉ ELEGIRNOS -->
+    <section class="beneficios">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-label">La diferencia</p>
+                <h2 class="section-title">¿Por Qué Elegirnos?</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="beneficios-grid">
+                <div class="beneficio">
+                    <div class="beneficio-icon">✦</div>
+                    <h3 class="beneficio-titulo">Diagnóstico Personalizado</h3>
+                    <p class="beneficio-texto">Cada tratamiento comienza con un análisis detallado de tu piel para diseñar el protocolo perfecto para vos.</p>
+                </div>
+                <div class="beneficio">
+                    <div class="beneficio-icon">◈</div>
+                    <h3 class="beneficio-titulo">Aparatología Profesional</h3>
+                    <p class="beneficio-texto">Trabajamos con equipos de última generación para potenciar los resultados de cada sesión.</p>
+                </div>
+                <div class="beneficio">
+                    <div class="beneficio-icon">❖</div>
+                    <h3 class="beneficio-titulo">Resultados Visibles</h3>
+                    <p class="beneficio-texto">Productos de alta cosmiátría y técnicas probadas que ofrecen cambios reales desde la primera visita.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contacto" id="contacto">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-label">Encontranos</p>
+                <h2 class="section-title">Contacto</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="contacto-grid">
+                <div class="contacto-info">
+                    <h3>Reservá tu turno</h3>
+                    <div class="contacto-item">
+                        <span class="contacto-item-icon">📍</span>
+                        <div class="contacto-item-text">
+                            <strong>Ubicación</strong>
+                            Podestá, Partido de Tres de Febrero<br>Buenos Aires, Argentina
+                        </div>
+                    </div>
+                    <div class="contacto-item">
+                        <span class="contacto-item-icon">📱</span>
+                        <div class="contacto-item-text">
+                            <strong>WhatsApp</strong>
+                            +54 9 11 3179-9348
+                        </div>
+                    </div>
+                    <div class="contacto-item">
+                        <span class="contacto-item-icon">📸</span>
+                        <div class="contacto-item-text">
+                            <strong>Instagram</strong>
+                            <a href="https://www.instagram.com/variete_Beauty/" target="_blank" rel="noopener" style="color: var(--nude-claro); text-decoration: none; transition: color 0.3s;">@variete_Beauty</a>
+                        </div>
+                    </div>
+                    <div class="contacto-item">
+                        <span class="contacto-item-icon">🕐</span>
+                        <div class="contacto-item-text">
+                            <strong>Horarios</strong>
+                            Lunes a Viernes: 9:00 - 20:00<br>
+                            Sábados: 9:00 - 14:00
+                        </div>
+                    </div>
+                    <div class="contacto-cta">
+                        <a href="https://wa.me/5491131799348?text=Hola! Quisiera consultar por un turno">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.313 0-4.445-.768-6.162-2.065l-.43-.334-3.29 1.103 1.103-3.29-.334-.43A9.958 9.958 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                            Escribinos
+                        </a>
+                    </div>
+                </div>
+                <div class="contacto-mapa">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.5!2d-58.5883!3d-34.5878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb7333a9ab2db%3A0x8e02f4dbf1d1c82f!2sAv.%20P%C3%A9rez%20Gald%C3%B3s%2C%20Pablo%20Podest%C3%A1%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">Varieté Beauty</div>
+        <p class="footer-text">Cosmiátría Profesional · Podestá, Buenos Aires</p>
+        <a href="https://www.instagram.com/variete_Beauty/" target="_blank" rel="noopener" style="display: inline-block; margin-top: 12px; color: var(--nude); text-decoration: none; font-size: 12px; letter-spacing: 2px; transition: color 0.3s;">📸 @variete_Beauty</a>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/5491131799348?text=Hola! Quisiera consultar por un turno" class="whatsapp-float" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.313 0-4.445-.768-6.162-2.065l-.43-.334-3.29 1.103 1.103-3.29-.334-.43A9.958 9.958 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    </a>
+
+</body>
+</html>
